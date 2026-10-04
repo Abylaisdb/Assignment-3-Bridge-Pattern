@@ -1,5 +1,6 @@
 import channel.Channel;
 import channel.EmailChannel;
+import channel.PushChannel;
 import channel.SmsChannel;
 import notification.Notification;
 import notification.Reminder;
@@ -34,6 +35,10 @@ public class Main {
         checkCombination("T4", new SmsChannel(), Main::alert,
                 "SMS | id=N-002 | to=user-42 | text=URGENT: Submit Assignment 3 by 23:59");
         checkRuntimeSwitch();
+        checkCombination("T6", new PushChannel(), Main::reminder,
+                "PUSH | id=N-001 | to=user-42 | title=Notification | body=Reminder: Submit Assignment 3 by 23:59");
+        checkCombination("T7", new PushChannel(), Main::alert,
+                "PUSH | id=N-002 | to=user-42 | title=Notification | body=URGENT: Submit Assignment 3 by 23:59");
 
         System.out.println("SUMMARY: " + passed + "/" + total + " PASS");
         if (passed != total) {
