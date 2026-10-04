@@ -1,0 +1,9 @@
+T1 PASS | Reminder + EmailChannel | result=EMAIL | id=N-001 | to=user-42 | subject=Notification | body=Reminder: Submit Assignment 3 by 23:59
+T2 PASS | Reminder + SmsChannel | result=SMS | id=N-001 | to=user-42 | text=Reminder: Submit Assignment 3 by 23:59
+T3 PASS | UrgentAlert + EmailChannel | result=EMAIL | id=N-002 | to=user-42 | subject=Notification | body=URGENT: Submit Assignment 3 by 23:59
+T4 PASS | UrgentAlert + SmsChannel | result=SMS | id=N-002 | to=user-42 | text=URGENT: Submit Assignment 3 by 23:59
+T5 PASS | sameObject=true | stateUnchanged=true
+   before=EMAIL | id=N-001 | to=user-42 | subject=Notification | body=Reminder: Submit Assignment 3 by 23:59 | after=SMS | id=N-001 | to=user-42 | text=Reminder: Submit Assignment 3 by 23:59
+T6 PASS | Reminder + PushChannel | result=PUSH | id=N-001 | to=user-42 | title=Notification | body=Reminder: Submit Assignment 3 by 23:59
+T7 PASS | UrgentAlert + PushChannel | result=PUSH | id=N-002 | to=user-42 | title=Notification | body=URGENT: Submit Assignment 3 by 23:59
+SUMMARY: 7/7 PASS

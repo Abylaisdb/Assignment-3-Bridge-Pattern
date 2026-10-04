@@ -1,0 +1,43 @@
+diff --git a/src/Main.java b/src/Main.java
+index 117aa39..65f9e73 100644
+--- a/src/Main.java
++++ b/src/Main.java
+@@ -1,5 +1,6 @@
+ import channel.Channel;
+ import channel.EmailChannel;
++import channel.PushChannel;
+ import channel.SmsChannel;
+ import notification.Notification;
+ import notification.Reminder;
+@@ -34,6 +35,10 @@ public class Main {
+         checkCombination("T4", new SmsChannel(), Main::alert,
+                 "SMS | id=N-002 | to=user-42 | text=URGENT: Submit Assignment 3 by 23:59");
+         checkRuntimeSwitch();
++        checkCombination("T6", new PushChannel(), Main::reminder,
++                "PUSH | id=N-001 | to=user-42 | title=Notification | body=Reminder: Submit Assignment 3 by 23:59");
++        checkCombination("T7", new PushChannel(), Main::alert,
++                "PUSH | id=N-002 | to=user-42 | title=Notification | body=URGENT: Submit Assignment 3 by 23:59");
+ 
+         System.out.println("SUMMARY: " + passed + "/" + total + " PASS");
+         if (passed != total) {
+diff --git a/src/channel/PushChannel.java b/src/channel/PushChannel.java
+new file mode 100644
+index 0000000..6608bd5
+--- /dev/null
++++ b/src/channel/PushChannel.java
+@@ -0,0 +1,14 @@
++package channel;
++
++public class PushChannel implements Channel {
++    @Override
++    public String channelName() {
++        return "PUSH";
++    }
++
++    @Override
++    public String deliver(String notificationId, String recipient, String message) {
++        return channelName() + " | id=" + notificationId + " | to=" + recipient
++                + " | title=Notification | body=" + message;
++    }
++}
+\ No newline at end of file
